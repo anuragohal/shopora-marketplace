@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What You Sell</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="1question-existing-or-not.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>What do you plan to sell?</h1>
+  <p class="subtitle">We'll get you the right features and tools for your business.</p>
+
+  <div class="options">
+    <div class="card" onclick="selectOption('products')">Products I buy or make myself</div>
+    <div class="card" onclick="selectOption('digital')">Digital products</div>
+    <div class="card" onclick="selectOption('dropshipping')">Dropshipping</div>
+    <div class="card" onclick="selectOption('services')">Services</div>
+    <div class="card" onclick="selectOption('print_on_demand')">Print on demand</div>
+    <div class="card" onclick="selectOption('not_sure')">I'll decide later</div>
+  </div>
+
+</div>
+
+<!-- BOTTOM BAR -->
+<div class="bottom-bar">
+  <button class="skip" onclick="goBack()">Back</button>
+  <button class="next" onclick="skipPage()">Skip</button>
+</div>
+
+<script>
+// ✅ OPTION CLICK
+function selectOption(option) {
+  localStorage.setItem("sellingType", option);
+
+  setTimeout(() => {
+    window.location.href = "store-name.html";
+  }, 200);
+}
+
+// 🔙 BACK
+function goBack() {
+  window.location.href = "2question.html";
+}
+
+// ⏭ SKIP
+function skipPage() {
+  localStorage.setItem("sellingType", "not_sure");
+  window.location.href = "store-name.html";
+}
+</script>
+
+</body>
+</html>

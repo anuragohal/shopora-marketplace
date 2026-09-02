@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - MyStore</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg"></div>
+
+<!-- LOGIN -->
+<div class="login-container">
+  <div class="login-box">
+
+    <h1>Welcome Back</h1>
+    <p class="subtitle">Login to continue your journey</p>
+
+    <form id="loginForm">
+
+      <div class="input-group">
+        <input type="email" id="email" required />
+        <label>Email Address</label>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" required />
+        <label>Password</label>
+      </div>
+
+      <div class="options">
+        <label><input type="checkbox" /> Remember me</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <button type="submit">Login</button>
+
+      <p class="register">
+        Don't have an account?
+        <a href="register.html">Register</a>
+      </p>
+
+    </form>
+
+  </div>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  try {
+    const response = await fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      // ✅ important
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userId", data.user._id);
+      localStorage.setItem("username", data.user.username);
+      localStorage.setItem("shopName", data.user.shopName);
+
+      alert("Login Successful ✅");
+
+      window.location.href = "index.html";
+    } else {
+      alert("Invalid Email or Password ❌");
+    }
+
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("Server error ❌");
+  }
+});
+</script>
+
+</body>
+</html>

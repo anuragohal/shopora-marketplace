@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Product</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="add-product.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1 id="title">Add Product</h1>
+  <p class="subtitle">Add items to your store catalog</p>
+
+  <div class="form">
+    <input type="text" id="name" placeholder="Product Name">
+    <input type="number" id="price" placeholder="Price">
+
+    <!-- ✅ MULTIPLE IMAGE UPLOAD -->
+    <input type="file" id="imageFile" accept="image/*" multiple>
+
+    <select id="category">
+      <option>Clothing</option>
+      <option>Electronics</option>
+      <option>Food</option>
+    </select>
+
+    <button onclick="addProduct()">Save Product</button>
+  </div>
+
+</div>
+
+<script>
+async function addProduct() {
+  const name = document.getElementById("name").value;
+  const price = document.getElementById("price").value;
+  const category = document.getElementById("category").value;
+  const fileInput = document.getElementById("imageFile");
+
+  const userId = localStorage.getItem("userId");
+
+  if (!name || !price) {
+    alert("Please fill required fields");
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = async function () {
+    const imageBase64 = reader.result;
+
+    const response = await fetch("http://localhost:5000/add-product", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name,
+        price,
+        category,
+        image: imageBase64,
+        userId
+      })
+    });
+
+    const data = await response.json();
+
+    alert(data.message);
+
+    window.location.href = "products1.html";
+  };
+
+  if (fileInput.files[0]) {
+    reader.readAsDataURL(fileInput.files[0]);
+  } else {
+    reader.onload();
+  }
+}
+</script>
+
+</body>
+</html>

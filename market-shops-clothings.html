@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Market – Local Business Finder</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #ffffff;
+      color: #000;
+      min-height: 100vh;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      background: #000;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    .nav-logo {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      margin-left: auto;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+
+    /* ── PAGE ── */
+    .page {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 36px 28px 80px;
+    }
+
+    /* ── TOP ROW ── */
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .top-row h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.8px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 9px 16px;
+      width: 260px;
+      background: #fafafa;
+    }
+    .search-box svg { opacity: 0.35; flex-shrink: 0; }
+    .search-box input {
+      border: none;
+      background: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 13.5px;
+      color: #000;
+      width: 100%;
+    }
+    .search-box input::placeholder { color: #aaa; }
+
+    /* ── FILTER TABS ── */
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: 1.5px solid #e0e0e0;
+      background: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      color: #444;
+      transition: all 0.18s;
+    }
+    .filter-btn:hover {
+      border-color: #000;
+      color: #000;
+    }
+    .filter-btn.active {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+
+    /* ── PRODUCTS GRID ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    /* ── PRODUCT CARD ── */
+    .product-card {
+      background: #f7f7f7;
+      border-radius: 14px;
+      border: 1.5px solid #ebebeb;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.22s, transform 0.22s;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .product-card:nth-child(1) { animation-delay: 0.04s; }
+    .product-card:nth-child(2) { animation-delay: 0.10s; }
+    .product-card:nth-child(3) { animation-delay: 0.16s; }
+    .product-card:nth-child(4) { animation-delay: 0.22s; }
+    .product-card:nth-child(5) { animation-delay: 0.06s; }
+    .product-card:nth-child(6) { animation-delay: 0.12s; }
+    .product-card:nth-child(7) { animation-delay: 0.18s; }
+    .product-card:nth-child(8) { animation-delay: 0.24s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .product-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+      transform: translateY(-3px);
+    }
+
+    /* Image / placeholder area */
+    .product-img {
+      height: 160px;
+      background: #ececec;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1.5px solid #e4e4e4;
+    }
+    .product-img svg { opacity: 0.18; width: 52px; height: 52px; }
+
+    .product-info {
+      padding: 18px 18px 8px;
+      flex: 1;
+    }
+
+    .product-name {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+    }
+
+    .product-store {
+      font-size: 12px;
+      color: #888;
+      margin-top: 3px;
+    }
+
+    .product-price {
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: 10px;
+      letter-spacing: -0.2px;
+    }
+
+    .product-footer {
+      padding: 12px 18px 18px;
+    }
+
+    .add-cart-btn {
+      width: 100%;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 0;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.15s;
+    }
+    .add-cart-btn:hover  { background: #222; transform: scale(1.02); }
+    .add-cart-btn:active { transform: scale(0.98); }
+    .add-cart-btn.added  { background: #333; }
+
+    /* ── EMPTY STATE ── */
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 0;
+      color: #aaa;
+      font-size: 15px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) { .products-grid { grid-template-columns: repeat(3,1fr); } }
+    @media (max-width: 720px)  {
+      .products-grid { grid-template-columns: repeat(2,1fr); }
+      .top-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .search-box { width: 100%; }
+    }
+    @media (max-width: 480px)  { .products-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- MAIN PAGE -->
+<div class="page">
+
+  <!-- Top row -->
+  <div class="top-row">
+    <h1>Clothes</h1>
+    <div class="search-box">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+      </svg>
+      <input type="text" id="searchInput" placeholder="Search products…" oninput="renderProducts()"/>
+    </div>
+  </div>
+
+  <!-- Filter tabs -->
+  <div class="filters">
+    <button class="filter-btn active" data-cat="products"         onclick="setFilter(this)">All</button>
+    <button class="filter-btn"        data-cat="MENS" onclick="setFilter(this)">MENS</button>
+    <button class="filter-btn"        data-cat="WOMENS"     onclick="setFilter(this)">WOMENS</button>
+    <button class="filter-btn"        data-cat="GIRLS"  onclick="setFilter(this)">GIRLS</button>
+    <button class="filter-btn"        data-cat="BOYS"     onclick="setFilter(this)">BOYS</button>
+  </div>
+
+  <!-- Products grid -->
+  <div class="products-grid" id="productsGrid"></div>
+
+</div>
+
+<script>
+  /* ── Product data ── replace/extend with your real API data ── */
+  const products = [
+    { id:1,  name:'Formal shirt', price:1999, category:'MENS', store:'urban men wear'     },
+    { id:2,  name:'Denim jeans ',         price:4499, category:'MENS', store:'style hub men'    },
+    { id:3,  name:'Casual t-shirt',   price:1299, category:'MENS', store:'royal gents fashion'     },
+    { id:4,  name:'Leather jacket',       price:599,  category:'MENS', store:'trendy man store'     },
+    { id:5,  name:'Designer saree',             price:499,  category:'WOMENS',     store:'diva fashion store'    },
+    { id:6,  name:'Kurti set',               price:2499, category:'WOMENS',     store:'elegant ladies wear'        },
+    { id:7,  name:'Western dress',        price:1799, category:'WOMENS',     store:'queen style hub'    },
+    { id:8,  name:'Handbag',        price:899,  category:'WOMENS',     store:'glamour fashion'   },
+    { id:9,  name:'Cute frock',          price:699,  category:'GIRLS',  store:'cute girl collection'       },
+    { id:10, name:'Party dress',          price:1199, category:'GIRLS',  store:'princess fashion hub'       },
+    { id:11, name:'Skirt top',     price:449,  category:'GIRLS',  store:'pink style store'     },
+    { id:12, name:'Sandals',    price:349,  category:'GIRLS',  store:'little diva wear'      },
+    { id:13, name:'Kids t-shirt',       price:799,  category:'BOYS',     store:'smart boy fashion'       },
+    { id:14, name:'School shirt',          price:499,  category:'BOYS',     store:'cool kids wear'       },
+    { id:15, name:'Shorts',  price:299,  category:'BOYS',     store:'junior trend store'  },
+    { id:16, name:'Sneakers',       price:649,  category:'BOYS',     store:'young star fashion'  },
+  ];
+
+  const icons = {
+    Electronics: `<svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 7V4M12 7V4M15 7V4M9 20v-3M12 20v-3M15 20v-3M4 9h3M4 12h3M4 15h3M17 9h3M17 12h3M17 15h3"/></svg>`,
+    Clothes:     `<svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 001 .74H6v10c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V10h2.15a1 1 0 001-.74l.58-3.57a2 2 0 00-1.35-2.23z"/></svg>`,
+    'Home Decor':`<svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    Kitchen:     `<svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>`,
+  };
+
+  let activeCategory = 'All';
+  let cart = [];
+
+  function setFilter(btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCategory = btn.dataset.cat;
+    renderProducts();
+  }
+
+  function renderProducts() {
+    const query = document.getElementById('searchInput').value.toLowerCase().trim();
+    const grid  = document.getElementById('productsGrid');
+
+    const filtered = products.filter(p => {
+      const matchCat    = activeCategory === 'All' || p.category === activeCategory;
+      const matchSearch = !query || p.name.toLowerCase().includes(query) || p.store.toLowerCase().includes(query);
+      return matchCat && matchSearch;
+    });
+
+    if (!filtered.length) {
+      grid.innerHTML = '<div class="empty">No products found.</div>';
+      return;
+    }
+
+    grid.innerHTML = filtered.map(p => `
+      <div class="product-card">
+        <div class="product-img">${icons[p.category] || ''}</div>
+        <div class="product-info">
+          <div class="product-name">${p.name}</div>
+          <div class="product-store">${p.store}</div>
+          <div class="product-price">₹${p.price.toLocaleString('en-IN')}</div>
+        </div>
+        <div class="product-footer">
+          <button class="add-cart-btn" id="btn-${p.id}" onclick="View(${p.id}, this)">view</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function View(id, btn) {
+    cart.push(products.find(p => p.id === id));
+    btn.textContent = '✓ Added';
+    btn.classList.add('added');
+    setTimeout(() => {
+      btn.textContent = 'view';
+      btn.classList.remove('added');
+    }, 1400);
+    // TODO: POST to your cart API endpoint
+    console.log('Cart updated:', cart.map(p => p.name));
+  }
+
+  renderProducts();
+</script>
+</body>
+</html>

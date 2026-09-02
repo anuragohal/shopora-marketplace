@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  background: #fff;
+  color: #111;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #000;
+  color: #fff;
+  padding: 20px;
+}
+.sidebar ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.sidebar li:hover,
+.sidebar .active {
+  background: #fff;
+  color: #000;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* TOP BAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user {
+  font-size: 1.5rem;
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* OVERVIEW */
+.overview {
+  margin-top: 40px;
+}
+
+.graph {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 150px;
+  margin-top: 20px;
+}
+
+.bar {
+  width: 30px;
+  background: #000;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.bar:hover {
+  transform: scale(1.1);
+}

@@ -1,0 +1,101 @@
+/* GLOBAL */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #ffffff;
+  color: #111;
+}
+
+/* CONTAINER */
+.container {
+  padding: 40px 20px;
+  max-width: 500px;
+  margin: auto;
+}
+
+/* HEADING */
+h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* SUBTITLE */
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+
+/* OPTIONS */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* CARD STYLE */
+.card {
+  background: #f4f4f4;
+  padding: 18px;
+  border-radius: 14px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: 1px solid transparent;
+}
+
+/* HOVER EFFECT */
+.card:hover {
+  background: #000;
+  color: #fff;
+  transform: scale(1.02);
+}
+
+/* SELECTED STATE (optional JS later) */
+.card.active {
+  background: #000;
+  color: #fff;
+}
+
+/* BOTTOM BAR */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 20px; /* balanced spacing */
+  display: flex;
+  gap: 10px;
+}
+
+.skip, .next {
+  flex: 1; /* both buttons equal width */
+}
+/* BUTTONS */
+button {
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* SKIP BUTTON */
+.skip {
+  background: #f2f2f2;
+  color: #333;
+}
+
+/* NEXT BUTTON */
+.next {
+  background: #000;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.next:hover {
+  transform: scale(1.05);
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<!-- ✅ PROTECT PAGE -->
+<script>
+const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+if (!isLoggedIn) {
+  window.location.href = "login.html";
+}
+</script>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2 id="storeTitle">MyStore</h2>
+  <ul>
+    <li class="active">Dashboard</li>
+    <li>Orders</li>
+    <li onclick="goPage('products1.html')">Products</li>
+    <li onclick="goPage('add-product.html')">Add Product</li>
+    <li>Customers</li>
+    <li>Analytics</li>
+    <li onclick="window.location.href='setting-admin-shop.html'">Settings</li>
+  </ul>
+
+  <!-- ✅ LOGOUT -->
+  <button onclick="logout()" class="logout">Logout</button>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <h1>Dashboard</h1>
+    <div class="user">👤</div>
+  </div>
+
+  <!-- STATS -->
+  <div class="cards">
+
+    <div class="card">
+      <h3>Total Sales</h3>
+      <p>₹12,500</p>
+    </div>
+
+    <div class="card">
+      <h3>Orders</h3>
+      <p>48</p>
+    </div>
+
+    <div class="card">
+      <h3>Leads</h3>
+      <p>120</p>
+    </div>
+
+    <div class="card">
+      <h3>Visitors</h3>
+      <p>1,240</p>
+    </div>
+
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="overview">
+    <h2>Overview</h2>
+    <div class="graph">
+      <div class="bar" style="height:40%"></div>
+      <div class="bar" style="height:70%"></div>
+      <div class="bar" style="height:50%"></div>
+      <div class="bar" style="height:90%"></div>
+      <div class="bar" style="height:60%"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ✅ SCRIPT -->
+<script>
+
+// 🔥 Set store name
+const storeName = localStorage.getItem("storeName");
+if (storeName) {
+  document.getElementById("storeTitle").innerText = storeName;
+}
+
+// 🔁 Page navigation
+function goPage(page) {
+  window.location.href = page;
+}
+
+// 🔐 Logout
+function logout() {
+  localStorage.removeItem("isLoggedIn");
+  alert("Logged out");
+  window.location.href = "login.html";
+}
+
+</script>
+
+</body>
+</html>

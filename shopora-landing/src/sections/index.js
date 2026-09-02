@@ -1,0 +1,10 @@
+export { HeroSection } from './HeroSection';
+export { AboutSection } from './AboutSection';
+export { FeaturesSection } from './FeaturesSection';
+export { HowItWorksSection } from './HowItWorksSection';
+export { WhyChooseShoporaSection } from './WhyChooseShoporaSection';
+export { PricingSection } from './PricingSection';
+export { TestimonialsSection } from './TestimonialsSection';
+export { FAQSection } from './FAQSection';
+export { NewsletterSection } from './NewsletterSection';
+export { CTASection } from './CTASection';

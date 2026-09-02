@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where to Sell</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="1question-existing-or-not.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Where would you like to sell?</h1>
+  <p class="subtitle">Pick one option - you can always change later.</p>
+
+  <div class="options">
+    <div class="card" onclick="selectOption('online_store', this)">An online store</div>
+    <div class="card" onclick="selectOption('in_person', this)">In person</div>
+    <div class="card" onclick="selectOption('website_blog', this)">An existing website or blog</div>
+    <div class="card" onclick="selectOption('social_media', this)">Social media</div>
+    <div class="card" onclick="selectOption('marketplaces', this)">Online marketplaces</div>
+    <div class="card" onclick="selectOption('not_sure', this)">I'm not sure</div>
+  </div>
+
+</div>
+
+<!-- BOTTOM BAR -->
+<div class="bottom-bar">
+  <button class="skip" onclick="goBack()">Back</button>
+  <button class="next" onclick="skipPage()">Skip</button>
+</div>
+
+<script>
+function selectOption(option, element) {
+
+  // ✅ SAVE
+  localStorage.setItem("sellingPlatform", option);
+
+  // UI highlight
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+  element.classList.add('active');
+
+  // NEXT
+  setTimeout(() => {
+    window.location.href = "3question.html";
+  }, 300);
+}
+
+function goBack() {
+  window.location.href = "1question-existing-or-not.html";
+}
+
+function skipPage() {
+  // ✅ SAVE DEFAULT VALUE
+  localStorage.setItem("sellingPlatform", "not_sure");
+
+  window.location.href = "3question.html";
+}
+</script>
+
+</body>
+</html>

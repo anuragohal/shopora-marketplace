@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Type</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="1question-existing-or-not.css">
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Is this shop for a new or existing business?</h1>
+  <p class="subtitle">This helps us suggest the right onboarding</p>
+
+  <!-- OPTIONS -->
+  <div class="options">
+    <div class="card" onclick="selectOption('new')">New business or idea</div>
+    <div class="card" onclick="selectOption('existing')">Existing business</div>
+  </div>
+
+</div>
+
+<!-- BOTTOM BAR -->
+<div class="bottom-bar">
+  <button class="skip" onclick="goBack()">Back</button>
+  <button class="next" onclick="skipStep()">Skip</button>
+</div>
+
+<!-- ✅ SCRIPT -->
+<script>
+function selectOption(type) {
+  // save selection
+  localStorage.setItem("businessType", type);
+
+  // go next
+  window.location.href = "2question.html";
+}
+
+function skipStep() {
+  // optional: clear or set default
+  localStorage.setItem("businessType", "not_selected");
+
+  window.location.href = "2question.html";
+}
+
+function goBack() {
+  window.location.href = "welcome-registation.html";
+}
+</script>
+
+</body>
+</html>

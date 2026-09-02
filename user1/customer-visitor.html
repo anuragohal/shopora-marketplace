@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop Products</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="products1.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1 id="shopTitle">Shop Products</h1>
+  <input type="text" id="search" placeholder="Search products..." onkeyup="searchProducts()">
+</div>
+
+<!-- FILTER -->
+<div class="filter">
+  <button onclick="filterCategory('all')">All</button>
+  <button onclick="filterCategory('Clothing')">Clothing</button>
+  <button onclick="filterCategory('Electronics')">Electronics</button>
+  <button onclick="filterCategory('Food')">Food</button>
+</div>
+
+<!-- PRODUCT GRID -->
+<div class="products" id="productList"></div>
+
+<script>
+let allProducts = [];
+
+/* =========================
+   LOAD SHOP PRODUCTS
+========================= */
+async function loadShopProducts() {
+  const shopUserId = localStorage.getItem("shopUserId");
+
+  if (!shopUserId) {
+    document.getElementById("productList").innerHTML =
+      "<p>Shop not found</p>";
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `http://localhost:5000/products/${shopUserId}`
+    );
+
+    allProducts = await response.json();
+
+    showProducts(allProducts);
+
+  } catch (error) {
+    console.error(error);
+    document.getElementById("productList").innerHTML =
+      "<p>Failed to load shop products</p>";
+  }
+}
+
+/* =========================
+   SHOW PRODUCTS
+========================= */
+function showProducts(products) {
+  const container = document.getElementById("productList");
+
+  if (!products || products.length === 0) {
+    container.innerHTML = "<p>No products available</p>";
+    return;
+  }
+
+  container.innerHTML = "";
+
+  products.forEach((p) => {
+    container.innerHTML += `
+      <div class="product-card">
+        <img src="${p.image || 'https://via.placeholder.com/200'}" alt="">
+        <h3>${p.name}</h3>
+        <p class="price">₹${p.price}</p>
+        <p>${p.category}</p>
+        <button>Add to Cart</button>
+      </div>
+    `;
+  });
+}
+
+/* =========================
+   FILTER CATEGORY
+========================= */
+function filterCategory(category) {
+  if (category === "all") {
+    showProducts(allProducts);
+    return;
+  }
+
+  const filtered = allProducts.filter(
+    product => product.category === category
+  );
+
+  showProducts(filtered);
+}
+
+/* =========================
+   SEARCH PRODUCT
+========================= */
+function searchProducts() {
+  const searchValue = document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+  const filtered = allProducts.filter(product =>
+    product.name.toLowerCase().includes(searchValue)
+  );
+
+  showProducts(filtered);
+}
+
+loadShopProducts();
+</script>
+
+</body>
+</html>

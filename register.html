@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Register</title>
+<link rel="stylesheet" href="ragister.css" />
+</head>
+<body>
+
+<div class="bg"></div>
+
+<div class="login-container">
+  <div class="login-box">
+
+    <h1>Create Account</h1>
+    <p class="subtitle">Register to continue</p>
+
+    <form id="registerForm">
+
+      <div class="input-group">
+        <input type="text" id="fullname" required />
+        <label>Full Name</label>
+      </div>
+
+      <div class="input-group">
+        <input type="email" id="email" required />
+        <label>Email</label>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" required />
+        <label>Password</label>
+      </div>
+
+      <button type="submit">Register</button>
+
+      <p class="register">
+        Already have an account?
+        <a href="login.html">Login</a>
+      </p>
+
+    </form>
+
+  </div>
+</div>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const fullname = document.getElementById("fullname").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  // shop name from previous step
+  const shopName = localStorage.getItem("storeName") || "My Store";
+
+  try {
+    const response = await fetch("http://localhost:5000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: fullname,
+        email: email,
+        password: password,
+        shopName: shopName
+      })
+    });
+
+    const data = await response.json();
+
+    alert(data.message);
+
+    if (data.message === "Account created successfully") {
+      window.location.href = "login.html";
+    }
+
+  } catch (error) {
+    console.error("Register error:", error);
+    alert("Server error ❌");
+  }
+});
+</script>
+
+</body>
+</html>

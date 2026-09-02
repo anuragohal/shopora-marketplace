@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Market – Local Business Finder</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --gray-100: #f5f5f5;
+      --gray-200: #e8e8e8;
+      --gray-400: #9e9e9e;
+      --gray-600: #555555;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,0.16);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      min-height: 100vh;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      background: var(--black);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    .nav-logo {
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin-left: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      margin-left: auto;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--white);
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 56px 40px 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .page-header h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+
+    .page-header p {
+      margin-top: 10px;
+      font-size: 15px;
+      color: var(--gray-600);
+    }
+
+    /* ── SEARCH BAR ── */
+    .search-wrap {
+      max-width: 1100px;
+      margin: 0 auto 40px;
+      padding: 0 40px;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gray-100);
+      border: 1.5px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 12px 18px;
+      max-width: 480px;
+    }
+
+    .search-bar svg { flex-shrink: 0; opacity: 0.4; }
+
+    .search-bar input {
+      background: none;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--black);
+      width: 100%;
+    }
+
+    .search-bar input::placeholder { color: var(--gray-400); }
+
+    /* ── GRID ── */
+    .categories-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    /* ── CATEGORY CARD ── */
+    .cat-card {
+      border-radius: var(--radius);
+      border: 1.5px solid var(--gray-200);
+      background: var(--white);
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .cat-card:nth-child(1) { animation-delay: 0.05s; }
+    .cat-card:nth-child(2) { animation-delay: 0.12s; }
+    .cat-card:nth-child(3) { animation-delay: 0.19s; }
+    .cat-card:nth-child(4) { animation-delay: 0.26s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .cat-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-4px);
+      border-color: #c8c8c8;
+    }
+
+    /* Banner area */
+    .cat-banner {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Individual banner backgrounds */
+    .cat-card.electronics .cat-banner  { background: #0a0a0a; }
+    .cat-card.clothes     .cat-banner  { background: #f0ece6; }
+    .cat-card.home-decor  .cat-banner  { background: #1a1a1a; }
+    .cat-card.kitchen     .cat-banner  { background: #f7f4ef; }
+
+    /* Decorative circles */
+    .cat-banner::before,
+    .cat-banner::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.12;
+    }
+
+    .cat-card.electronics .cat-banner::before { width:220px;height:220px;background:#fff;top:-60px;right:-50px; }
+    .cat-card.electronics .cat-banner::after  { width:120px;height:120px;background:#fff;bottom:-30px;left:20px; }
+
+    .cat-card.clothes .cat-banner::before { width:200px;height:200px;background:#000;top:-70px;left:-40px; }
+    .cat-card.clothes .cat-banner::after  { width:100px;height:100px;background:#000;bottom:-20px;right:30px; }
+
+    .cat-card.home-decor .cat-banner::before { width:240px;height:240px;background:#fff;bottom:-80px;left:-60px; }
+    .cat-card.home-decor .cat-banner::after  { width:130px;height:130px;background:#fff;top:-30px;right:20px; }
+
+    .cat-card.kitchen .cat-banner::before { width:180px;height:180px;background:#000;top:-50px;right:-40px; }
+    .cat-card.kitchen .cat-banner::after  { width:110px;height:110px;background:#000;bottom:-25px;left:40px; }
+
+    /* Icon wrapper */
+    .cat-icon {
+      width: 72px; height: 72px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cat-card.electronics .cat-icon { background: rgba(255,255,255,0.12); }
+    .cat-card.clothes     .cat-icon { background: rgba(0,0,0,0.07); }
+    .cat-card.home-decor  .cat-icon { background: rgba(255,255,255,0.12); }
+    .cat-card.kitchen     .cat-icon { background: rgba(0,0,0,0.07); }
+
+    .cat-icon svg { width: 36px; height: 36px; }
+
+    /* dark banner → white icon */
+    .cat-card.electronics .cat-icon svg,
+    .cat-card.home-decor  .cat-icon svg { color: #ffffff; }
+
+    /* light banner → black icon */
+    .cat-card.clothes .cat-icon svg,
+    .cat-card.kitchen .cat-icon svg { color: #000000; }
+
+    /* Card body */
+    .cat-body {
+      padding: 22px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .cat-body h2 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+    }
+
+    .cat-body p {
+      font-size: 13.5px;
+      color: var(--gray-600);
+      line-height: 1.55;
+    }
+
+    .cat-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px 22px;
+    }
+
+    .store-count {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-400);
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
+    }
+
+    .browse-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 9px 18px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .browse-btn:hover { background: #222; transform: scale(1.03); }
+    .browse-btn svg { width:14px; height:14px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .categories-grid { grid-template-columns: 1fr; padding: 0 20px 60px; }
+      .page-header, .search-wrap { padding-left: 20px; padding-right: 20px; }
+      .page-header h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <h1>Market</h1>
+  <p>Browse local shops by category and discover the best near you.</p>
+</div>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <div class="search-bar">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+    </svg>
+    <input type="text" placeholder="Search categories or stores…"/>
+  </div>
+</div>
+
+<!-- CATEGORIES GRID -->
+<div class="categories-grid">
+
+  <!-- 1. Electronics -->
+  <div class="cat-card electronics" onclick="handleCategory('Electronics')">
+    <div class="cat-banner">
+      <div class="cat-icon">
+        <!-- CPU / chip icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="7" y="7" width="10" height="10" rx="1"/>
+          <path d="M9 7V4M12 7V4M15 7V4M9 20v-3M12 20v-3M15 20v-3M4 9h3M4 12h3M4 15h3M17 9h3M17 12h3M17 15h3"/>
+        </svg>
+      </div>
+    </div>
+    <div class="cat-body">
+      <h2>Electronics</h2>
+      <p>Phones, laptops, gadgets, accessories and everything tech from local stores.</p>
+    </div>
+    <div class="cat-footer">
+      <span class="store-count">24 stores nearby</span>
+      <button class="browse-btn" onclick="window.location.href='market-shops.html'">
+        Browse
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 2. Clothes -->
+  <div class="cat-card clothes" onclick="handleCategory('Clothes')">
+    <div class="cat-banner">
+      <div class="cat-icon">
+        <!-- shirt icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 001 .74H6v10c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V10h2.15a1 1 0 001-.74l.58-3.57a2 2 0 00-1.35-2.23z"/>
+        </svg>
+      </div>
+    </div>
+    <div class="cat-body">
+      <h2>Clothes</h2>
+      <p>Fashion, footwear, ethnic wear, and trendy outfits from local boutiques.</p>
+    </div>
+    <div class="cat-footer">
+      <span class="store-count">38 stores nearby</span>
+      <button class="browse-btn" onclick="window.location.href='market-shops-clothings.html?category=Clothes'">
+        Browse
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 3. Home Decor -->
+  <div class="cat-card home-decor" onclick="handleCategory('Home Decor')">
+    <div class="cat-banner">
+      <div class="cat-icon">
+        <!-- home / sofa icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+    </div>
+    <div class="cat-body">
+      <h2>Home Decor</h2>
+      <p>Furniture, lighting, wall art, plants, and everything to beautify your space.</p>
+    </div>
+    <div class="cat-footer">
+      <span class="store-count">19 stores nearby</span>
+      <button class="browse-btn" onclick="window.location.href='market-shops-home-decor.html?category=Home Decor'">
+        Browse
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 4. Kitchen -->
+  <div class="cat-card kitchen" onclick="handleCategory('Kitchen')">
+    <div class="cat-banner">
+      <div class="cat-icon">
+        <!-- utensils icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/>
+          <path d="M7 2v20M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>
+        </svg>
+      </div>
+    </div>
+    <div class="cat-body">
+      <h2>Kitchen</h2>
+      <p>Cookware, appliances, storage, and daily essentials from nearby kitchenware shops.</p>
+    </div>
+    <div class="cat-footer">
+      <span class="store-count">15 stores nearby</span>
+      <button class="browse-btn">
+        Browse
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function handleCategory(name) {
+    // Replace with your actual routing logic
+    console.log('Navigate to:', name);
+    // e.g. window.location.href = `/market/${name.toLowerCase().replace(' ','-')}`;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Review Your Details</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: #fff;
+}
+
+.container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.box {
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  background: black;
+  color: white;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+  <h1>Review Your Details</h1>
+
+  <div class="box">
+    <strong>Business Type:</strong>
+    <p id="businessType"></p>
+  </div>
+
+  <div class="box">
+    <strong>Where You Sell:</strong>
+    <p id="sellingPlatform"></p>
+  </div>
+
+  <div class="box">
+    <strong>What You Sell:</strong>
+    <p id="sellingType"></p>
+  </div>
+
+  <div class="box">
+    <strong>Store Name:</strong>
+    <p id="storeName"></p>
+  </div>
+
+  <button onclick="confirmFinish()">Confirm & Finish</button>
+</div>
+
+<script>
+// ✅ MAP FOR DISPLAY
+const platformMap = {
+  online_store: "Online Store",
+  in_person: "In Person",
+  website_blog: "Website / Blog",
+  social_media: "Social Media",
+  marketplaces: "Online Marketplaces",
+  not_sure: "Not Sure"
+};
+
+// ✅ GET VALUES (FIXED KEYS)
+const businessType = localStorage.getItem("businessType");
+const sellingPlatform = localStorage.getItem("sellingPlatform"); // make sure you SAVE this correctly
+const sellingType = localStorage.getItem("sellingType");
+const storeName = localStorage.getItem("storeName");
+
+// ✅ DISPLAY VALUES
+document.getElementById("businessType").innerText =
+  businessType || "Not selected";
+
+document.getElementById("sellingPlatform").innerText =
+  platformMap[sellingPlatform] || "Not selected";
+
+document.getElementById("sellingType").innerText =
+  sellingType || "Not selected";
+
+document.getElementById("storeName").innerText =
+  storeName || "Not entered";
+
+// ✅ FINAL BUTTON
+function confirmFinish() {
+  // ⚠️ Don't clear everything if you need login/products later
+  localStorage.removeItem("businessType");
+  localStorage.removeItem("sellingPlatform");
+  localStorage.removeItem("sellingType");
+  localStorage.removeItem("storeName");
+
+  window.location.href = "success.html";
+}
+</script>
+
+</body>
+</html>

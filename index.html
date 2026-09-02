@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopora — Find Stores Beyond Streets</title>
+  <meta name="description" content="Shopora is a Local Business Product Discovery Platform that helps customers find nearby shops and helps local businesses grow their digital presence.">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ NAVBAR ═══ -->
+<header class="navbar" id="navbar">
+  <div class="nav-logo">
+    <span class="logo-icon">🏪</span>
+    <span class="logo-text">Sho<span class="logo-accent">pora</span></span>
+  </div>
+  <nav class="nav-links">
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#revenue">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="market.html">Market</a>
+    <a href="user1/Dashboard.html" id="dashboardLink" style="display:none;">Dashboard</a>
+  </nav>
+  <div class="nav-actions">
+    <button class="btn-outline" onclick="goLogin()">Login</button>
+    <button class="btn-primary" onclick="window.location.href='welcome-registation.html'">Get Started</button>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </button>
+</header>
+
+<!-- ═══════════════════════════════════════════ HERO ═══ -->
+<section class="hero" id="home">
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="videos/b1.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Local Business Product Discovery Platform
+    </div>
+    <h1 class="hero-title">
+      Find Stores<br>
+      <span class="gradient-text">Beyond Streets</span>
+    </h1>
+    <p class="hero-subtitle">
+      Shopora connects customers with nearby local businesses — making product discovery smarter, faster, and more accessible for everyone.
+    </p>
+
+    <div class="search-wrapper">
+      <div class="search-box">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="locationInput" placeholder="Search shops, products or location..." onkeyup="liveSearch()">
+        <button class="search-btn">Search</button>
+      </div>
+      <div id="results"><div id="shopList"></div></div>
+    </div>
+
+    <div class="hero-cta">
+      <button class="btn-hero-primary" onclick="window.location.href='welcome-registation.html'">
+        <i class="fas fa-store"></i> List Your Shop — Free
+      </button>
+      <button class="btn-hero-secondary" onclick="window.location.href='market.html'">
+        <i class="fas fa-compass"></i> Explore Nearby Shops
+      </button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number" data-target="500">0</span><span>+</span>
+        <span class="stat-label">Local Shops</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="2000">0</span><span>+</span>
+        <span class="stat-label">Products Listed</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="5000">0</span><span>+</span>
+        <span class="stat-label">Happy Customers</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="10">0</span><span>+</span>
+        <span class="stat-label">Cities Covered</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ TRUST BAR ═══ -->
+<section class="trust-bar">
+  <div class="trust-inner">
+    <span><i class="fas fa-check-circle"></i> Trusted by Local Businesses</span>
+    <span><i class="fas fa-shield-alt"></i> Secure & Verified Shops</span>
+    <span><i class="fas fa-map-marker-alt"></i> Location-Based Discovery</span>
+    <span><i class="fas fa-star"></i> Rated by Real Customers</span>
+    <span><i class="fas fa-bolt"></i> Free 2-Month Trial</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ ABOUT ═══ -->
+<section class="about section-pad" id="about">
+  <div class="container">
+    <div class="section-label">Who We Are</div>
+    <h2 class="section-title">Empowering Local Businesses,<br><span class="gradient-text">One Shop at a Time</span></h2>
+
+    <div class="about-grid">
+      <div class="about-text-col">
+        <p class="about-lead">
+          Many local businesses remain invisible online — customers walk past great shops simply because they don't know they exist. <strong>Shopora was built to change that.</strong>
+        </p>
+        <p class="about-body">
+          We are a Local Business Product Discovery Platform that bridges the gap between neighbourhood shop owners and the customers looking for exactly what they sell. Shop owners get a powerful digital dashboard to list their store, upload products, manage categories, and reach more people — without needing any technical expertise.
+        </p>
+        <p class="about-body">
+          Customers get a seamless way to search nearby shops, browse products, compare prices, and decide where to shop — all from one place.
+        </p>
+
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="pillar-icon" style="background: linear-gradient(135deg,#6C63FF,#8B5CF6)">
+              <i class="fas fa-store"></i>
+            </div>
+            <div>
+              <strong>Local Shops</strong>
+              <p>Empowering local businesses to go digital effortlessly.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon" style="background: linear-gradient(135deg,#00C2FF,#0072ff)">
+              <i class="fas fa-search"></i>
+            </div>
+            <div>
+              <strong>Product Search</strong>
+              <p>Find and explore products from shops near you.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon" style="background: linear-gradient(135deg,#f7971e,#ffd200)">
+              <i class="fas fa-users"></i>
+            </div>
+            <div>
+              <strong>Customers</strong>
+              <p>Helping customers discover the best stores around them.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon" style="background: linear-gradient(135deg,#11998e,#38ef7d)">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <div>
+              <strong>Connect</strong>
+              <p>Bridging the gap between shops and customers digitally.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-cards-col">
+        <div class="mission-card glass-card">
+          <div class="mc-icon"><i class="fas fa-rocket"></i></div>
+          <h3>Our Mission</h3>
+          <p>To empower every local business with a digital presence and make nearby product discovery easier, smarter, and more accessible for all customers.</p>
+        </div>
+        <div class="mission-card glass-card" style="margin-top:20px">
+          <div class="mc-icon" style="background:linear-gradient(135deg,#00C2FF,#0072ff)"><i class="fas fa-eye"></i></div>
+          <h3>Our Vision</h3>
+          <p>A world where no local shop is invisible — where every neighbourhood business thrives digitally and every customer can find what they need, right around the corner.</p>
+        </div>
+        <div class="mission-card glass-card" style="margin-top:20px">
+          <div class="mc-icon" style="background:linear-gradient(135deg,#f7971e,#ffd200)"><i class="fas fa-lightbulb"></i></div>
+          <h3>Why Shopora Exists</h3>
+          <p>Despite the growth of local businesses, many challenges prevent them from reaching customers effectively. There is no single platform where local shops and products are listed together — until now.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ PROBLEM ═══ -->
+<section class="problem-section section-pad">
+  <div class="container">
+    <div class="section-label">The Problem We Solve</div>
+    <h2 class="section-title">Why Local Businesses <span class="gradient-text">Struggle to Grow</span></h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon"><i class="fas fa-eye-slash"></i></div>
+        <h4>No Digital Visibility</h4>
+        <p>Many local businesses are completely offline and invisible to potential customers searching online.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon"><i class="fas fa-map-marked-alt"></i></div>
+        <h4>Hard to Find Nearby Products</h4>
+        <p>Customers struggle to discover what products are available in shops right around the corner.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon"><i class="fas fa-layer-group"></i></div>
+        <h4>No Centralized Marketplace</h4>
+        <p>There is no single platform where local shops and their products are listed together for easy browsing.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon"><i class="fas fa-chart-line"></i></div>
+        <h4>Difficult to Attract Customers</h4>
+        <p>Small businesses find it hard to compete and reach the right audience without expensive marketing tools.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ FEATURES ═══ -->
+<section class="features-section section-pad" id="features">
+  <div class="container">
+    <div class="section-label">Platform Features</div>
+    <h2 class="section-title">Everything You Need to<br><span class="gradient-text">Discover & Grow</span></h2>
+    <p class="section-sub">Shopora gives shop owners and customers a complete toolkit — from listing products to discovering nearby stores.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feat-icon" style="background:linear-gradient(135deg,#6C63FF,#8B5CF6)"><i class="fas fa-store-alt"></i></div>
+        <h3>Shop Registration</h3>
+        <p>Sellers can easily register their shops, create profiles, and establish a strong online presence in minutes.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon" style="background:linear-gradient(135deg,#00C2FF,#0072ff)"><i class="fas fa-box-open"></i></div>
+        <h3>Product Upload</h3>
+        <p>Add products with details, images, prices, and categories. Manage your entire inventory from one dashboard.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon" style="background:linear-gradient(135deg,#11998e,#38ef7d)"><i class="fas fa-tags"></i></div>
+        <h3>Category Management</h3>
+        <p>Organise products into categories for better browsing. Customers find what they need faster and easier.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon" style="background:linear-gradient(135deg,#f7971e,#ffd200)"><i class="fas fa-search-location"></i></div>
+        <h3>Product Search</h3>
+        <p>Customers search products using filters, keywords, and location — discovering the best nearby shops instantly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon" style="background:linear-gradient(135deg,#e96c75,#f7797d)"><i class="fas fa-images"></i></div>
+        <h3>Image Upload</h3>
+        <p>Upload and manage product and shop images securely. Visual listings attract more customers and build trust.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon" style="background:linear-gradient(135deg,#8B5CF6,#6C63FF)"><i class="fas fa-tachometer-alt"></i></div>
+        <h3>Seller Dashboard</h3>
+        <p>A central dashboard for sellers to manage products, track customer visits, and monitor shop performance.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon" style="background:linear-gradient(135deg,#00C2FF,#11998e)"><i class="fas fa-map-marker-alt"></i></div>
+        <h3>Nearby Business Discovery</h3>
+        <p>Customers discover shops and products based on their location — making local shopping effortless.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon" style="background:linear-gradient(135deg,#f7971e,#e96c75)"><i class="fas fa-star"></i></div>
+        <h3>Ratings & Reviews</h3>
+        <p>Customers leave ratings and reviews after visiting shops. Businesses build credibility and trust over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ HOW IT WORKS ═══ -->
+<section class="how-section section-pad" id="how-it-works">
+  <div class="container">
+    <div class="section-label">Simple Process</div>
+    <h2 class="section-title">How <span class="gradient-text">Shopora Works</span></h2>
+    <p class="section-sub">Getting started is simple — for both shop owners and customers.</p>
+
+    <div class="how-tabs">
+      <button class="how-tab active" onclick="switchTab('sellers')">For Sellers</button>
+      <button class="how-tab" onclick="switchTab('customers')">For Customers</button>
+    </div>
+
+    <div class="how-steps" id="sellers-steps">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+        <h4>Register Your Shop</h4>
+        <p>Sign up and create your shop profile with name, address, contact, and a photo.</p>
+      </div>
+      <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon"><i class="fas fa-upload"></i></div>
+        <h4>Upload Products</h4>
+        <p>Add your products with images, prices, and categories to your digital storefront.</p>
+      </div>
+      <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon"><i class="fas fa-bullhorn"></i></div>
+        <h4>Get Discovered</h4>
+        <p>Customers nearby find your shop through search, categories, and location-based results.</p>
+      </div>
+      <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-icon"><i class="fas fa-chart-bar"></i></div>
+        <h4>Grow Your Business</h4>
+        <p>Track visits, manage products, and use analytics to grow your customer base.</p>
+      </div>
+    </div>
+
+    <div class="how-steps hidden" id="customers-steps">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon"><i class="fas fa-search"></i></div>
+        <h4>Search Products</h4>
+        <p>Type a product name, category, or location to find what you need nearby.</p>
+      </div>
+      <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon"><i class="fas fa-store"></i></div>
+        <h4>Browse Shops</h4>
+        <p>Explore nearby shops, view their products, prices, and contact details.</p>
+      </div>
+      <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon"><i class="fas fa-balance-scale"></i></div>
+        <h4>Compare & Decide</h4>
+        <p>Compare products across shops, read reviews, and choose the best option.</p>
+      </div>
+      <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-icon"><i class="fas fa-map-marked-alt"></i></div>
+        <h4>Visit the Shop</h4>
+        <p>Get directions and visit the shop — or contact them directly through the platform.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ WHY CHOOSE ═══ -->
+<section class="why-section section-pad">
+  <div class="container">
+    <div class="section-label">Why Shopora</div>
+    <h2 class="section-title">The Smarter Way to<br><span class="gradient-text">Shop & Sell Locally</span></h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <i class="fas fa-heart why-icon"></i>
+        <h4>Support Local Economy</h4>
+        <p>Every purchase through Shopora directly supports a local business owner and strengthens your community.</p>
+      </div>
+      <div class="why-card">
+        <i class="fas fa-eye why-icon"></i>
+        <h4>Better Visibility</h4>
+        <p>Local shops gain digital visibility they never had before — reaching customers who are actively searching.</p>
+      </div>
+      <div class="why-card">
+        <i class="fas fa-wallet why-icon"></i>
+        <h4>Affordable Marketing</h4>
+        <p>Start with a free 2-month trial. Affordable plans designed specifically for small and local businesses.</p>
+      </div>
+      <div class="why-card">
+        <i class="fas fa-compass why-icon"></i>
+        <h4>Easy Discovery</h4>
+        <p>Customers find exactly what they need from shops nearby — no more guessing which store has what.</p>
+      </div>
+      <div class="why-card">
+        <i class="fas fa-shield-alt why-icon"></i>
+        <h4>Secure & Verified</h4>
+        <p>All shops are verified. Role-based access control ensures secure, trusted interactions on the platform.</p>
+      </div>
+      <div class="why-card">
+        <i class="fas fa-chart-pie why-icon"></i>
+        <h4>Smart Analytics</h4>
+        <p>Premium analytics give shop owners insights into customer behaviour and product performance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ REVENUE ═══ -->
+<section class="revenue-section section-pad" id="revenue">
+  <div class="container">
+    <div class="section-label">Pricing & Plans</div>
+    <h2 class="section-title">Simple, Transparent<br><span class="gradient-text">Revenue Model</span></h2>
+    <p class="section-sub">Start free. Grow with us. Shopora offers flexible plans for every stage of your business.</p>
+
+    <div class="revenue-grid">
+      <div class="rev-card highlight-card">
+        <div class="rev-badge">Most Popular</div>
+        <div class="rev-icon"><i class="fas fa-gift"></i></div>
+        <h3>2-Month Free Trial</h3>
+        <p>Store owners get 2 full months free to explore all features and grow their online visibility before subscribing.</p>
+        <span class="rev-tag">₹0 to start</span>
+      </div>
+      <div class="rev-card">
+        <div class="rev-icon"><i class="fas fa-clipboard-list"></i></div>
+        <h3>Store Subscription</h3>
+        <p>Monthly or yearly plans for shop owners to continue listing and promoting their stores on the platform.</p>
+        <span class="rev-tag">Flexible Plans</span>
+      </div>
+      <div class="rev-card">
+        <div class="rev-icon"><i class="fas fa-star"></i></div>
+        <h3>Featured Promotions</h3>
+        <p>Businesses pay to highlight their products at the top of search results for maximum visibility and reach.</p>
+        <span class="rev-tag">Boost Visibility</span>
+      </div>
+      <div class="rev-card">
+        <div class="rev-icon"><i class="fas fa-ad"></i></div>
+        <h3>Advertisement Services</h3>
+        <p>Local businesses run targeted advertisements and promotional banners on the platform to attract more customers.</p>
+        <span class="rev-tag">Targeted Ads</span>
+      </div>
+      <div class="rev-card">
+        <div class="rev-icon"><i class="fas fa-percentage"></i></div>
+        <h3>Commission on Sales</h3>
+        <p>A small commission is charged on successful product orders or bookings made through the platform.</p>
+        <span class="rev-tag">Pay Per Sale</span>
+      </div>
+      <div class="rev-card">
+        <div class="rev-icon"><i class="fas fa-chart-bar"></i></div>
+        <h3>Premium Analytics</h3>
+        <p>Shop owners access advanced customer insights and product performance reports through premium plans.</p>
+        <span class="rev-tag">Data-Driven Growth</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ TESTIMONIALS ═══ -->
+<section class="testimonials-section section-pad">
+  <div class="container">
+    <div class="section-label">What People Say</div>
+    <h2 class="section-title">Loved by <span class="gradient-text">Shop Owners & Customers</span></h2>
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Shopora helped my small clothing shop get discovered by so many new customers. My sales have grown significantly since I listed on the platform."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">R</div>
+          <div>
+            <strong>Rahul Sharma</strong>
+            <span>Clothing Shop Owner, Kolhapur</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"I used to waste so much time going from shop to shop. Now I just search on Shopora and find exactly what I need nearby. It's a game changer."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#00C2FF,#0072ff)">P</div>
+          <div>
+            <strong>Priya Desai</strong>
+            <span>Customer, Pune</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"The dashboard is so easy to use. I uploaded all my products in one afternoon and started getting customer inquiries the very next day."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#11998e,#38ef7d)">A</div>
+          <div>
+            <strong>Amit Patil</strong>
+            <span>Electronics Store Owner, Kolhapur</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ FAQ ═══ -->
+<section class="faq-section section-pad" id="faq">
+  <div class="container">
+    <div class="section-label">Got Questions?</div>
+    <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is Shopora? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">
+          <p>Shopora is a Local Business Product Discovery Platform that helps customers find products from nearby shops while helping local businesses build their digital presence and reach more customers.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is it free to list my shop? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">
+          <p>Yes! Every shop owner gets a free 2-month trial to explore all features, list products, and grow their visibility — no credit card required to start.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do customers find my shop? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">
+          <p>Customers search by product name, category, or location. Your shop appears in relevant search results, category listings, and location-based discovery — giving you maximum exposure.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What can I manage from the seller dashboard? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">
+          <p>From your dashboard you can manage your shop profile, add/edit/delete products, upload images, manage categories, set prices, and view customer ratings and reviews.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can a customer also become a seller? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">
+          <p>Absolutely. Customers can upgrade their account to a Business Owner account at any time to unlock seller features and start listing their own shop on the platform.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is my data secure on Shopora? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">
+          <p>Yes. Shopora uses secure email/password authentication, hashed passwords stored in MongoDB, role-based access control, and session management via localStorage to ensure your data stays safe.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ NEWSLETTER ═══ -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-box">
+      <div class="nl-text">
+        <h3>Stay Updated with Shopora</h3>
+        <p>Get the latest news, new shop listings, and platform updates delivered to your inbox.</p>
+      </div>
+      <div class="nl-form">
+        <input type="email" placeholder="Enter your email address">
+        <button class="btn-primary">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:16px">
+          <span class="logo-icon">🏪</span>
+          <span class="logo-text" style="color:white">Sho<span class="logo-accent">pora</span></span>
+        </div>
+        <p>Find Stores Beyond Streets. Shopora is a Local Business Product Discovery Platform connecting customers with nearby shops.</p>
+        <div class="footer-socials">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="market.html">Browse Market</a>
+        <a href="welcome-registation.html">List Your Shop</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+      </div>
+      <div class="footer-col">
+        <h4>For Businesses</h4>
+        <a href="user1/Dashboard.html">Seller Dashboard</a>
+        <a href="user1/add-product.html">Add Products</a>
+        <a href="#revenue">Pricing Plans</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#about">About Us</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Shopora — Local Business Product Discovery Platform. All rights reserved.</p>
+      <p>Built by F.Y.B.Tech CSE Group | D.Y. Patil School of Engineering and Management</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── SHOPS DATA ── */
+const shops = [
+  { name: "Mobile World", location: "kolhapur", category: "Mobile Store", link: "shop1.html" },
+  { name: "Tech Zone", location: "kolhapur", category: "Electronics", link: "shop2.html" },
+  { name: "Food Mart", location: "kolhapur", category: "Food", link: "shop3.html" },
+  { name: "Fashion Hub", location: "pune", category: "Clothing", link: "shop4.html" }
+];
+
+/* ── SEARCH ── */
+function liveSearch() {
+  const query = document.getElementById("locationInput").value.toLowerCase();
+  const results = document.getElementById("results");
+  const shopList = document.getElementById("shopList");
+  shopList.innerHTML = "";
+  if (query === "") { results.style.display = "none"; return; }
+  const filtered = shops.filter(s =>
+    s.name.toLowerCase().includes(query) ||
+    s.location.toLowerCase().includes(query) ||
+    s.category.toLowerCase().includes(query)
+  );
+  if (filtered.length === 0) {
+    shopList.innerHTML = "<div class='no-result'>No shops found</div>";
+  } else {
+    filtered.forEach(s => {
+      shopList.innerHTML += `<div onclick="window.location.href='${s.link}'">
+        <strong>${s.name}</strong><span>${s.category}</span><small>${s.location}</small>
+      </div>`;
+    });
+  }
+  results.style.display = "block";
+}
+
+/* ── LOGIN ── */
+function goLogin() { window.location.href = "login.html"; }
+
+/* ── CHECK LOGIN ── */
+function checkLogin() {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const dashboardLink = document.getElementById("dashboardLink");
+  const loginBtn = document.querySelector(".btn-outline");
+  if (isLoggedIn === "true") {
+    if (dashboardLink) dashboardLink.style.display = "inline-block";
+    if (loginBtn) { loginBtn.innerText = "Logout"; loginBtn.onclick = logout; }
+  }
+}
+function logout() { localStorage.removeItem("isLoggedIn"); window.location.reload(); }
+
+/* ── NAVBAR SCROLL ── */
+window.addEventListener("scroll", () => {
+  const navbar = document.getElementById("navbar");
+  if (window.scrollY > 50) navbar.classList.add("scrolled");
+  else navbar.classList.remove("scrolled");
+});
+
+/* ── HAMBURGER ── */
+function toggleMenu() {
+  document.querySelector(".nav-links").classList.toggle("open");
+}
+
+/* ── HOW IT WORKS TABS ── */
+function switchTab(tab) {
+  document.querySelectorAll(".how-tab").forEach(t => t.classList.remove("active"));
+  document.querySelectorAll(".how-steps").forEach(s => s.classList.add("hidden"));
+  event.target.classList.add("active");
+  document.getElementById(tab + "-steps").classList.remove("hidden");
+}
+
+/* ── FAQ ACCORDION ── */
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
+  if (!isOpen) item.classList.add("open");
+}
+
+/* ── COUNTER ANIMATION ── */
+function animateCounters() {
+  document.querySelectorAll(".stat-number").forEach(el => {
+    const target = parseInt(el.getAttribute("data-target"));
+    let count = 0;
+    const step = Math.ceil(target / 60);
+    const timer = setInterval(() => {
+      count += step;
+      if (count >= target) { el.textContent = target.toLocaleString(); clearInterval(timer); }
+      else el.textContent = count.toLocaleString();
+    }, 30);
+  });
+}
+
+/* ── INTERSECTION OBSERVER ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      if (entry.target.classList.contains("hero-stats")) animateCounters();
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".feature-card, .problem-card, .why-card, .rev-card, .testi-card, .step-card, .mission-card, .pillar, .hero-stats").forEach(el => {
+  el.classList.add("fade-in");
+  observer.observe(el);
+});
+
+checkLogin();
+</script>
+</body>
+</html>

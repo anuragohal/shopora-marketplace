@@ -1,0 +1,177 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #f9fafb;
+  color: #111;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+  background: white;
+  align-items: center;
+}
+
+.navbar nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #333;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.btn {
+  padding: 10px 20px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+}
+
+/* SEARCH */
+.search-box {
+  position: relative;
+  width: 450px;
+  margin: 20px auto;
+}
+
+#locationInput {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+#results {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+#shopList div {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: 0.3s;
+  color: black;
+}
+
+#shopList div:hover {
+  background: black;
+  color: white;
+}
+
+#shopList div:last-child {
+  border-bottom: none;
+}
+
+/* TRUST */
+.trust {
+  text-align: center;
+  padding: 20px;
+  background: #e6f4ea;
+}
+
+/* FEATURES */
+.features {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+}
+
+/* ABOUT SECTION */
+.about {
+  padding: 80px 60px;
+  background: #fff;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+
+  max-width: 1200px;
+  margin: auto;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+}
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: black;
+  color: white;
+}

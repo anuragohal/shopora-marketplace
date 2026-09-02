@@ -1,0 +1,112 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background: black;
+  color: white;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* VIDEO */
+.bg-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* OVERLAY */
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+}
+
+/* CONTENT */
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical center */
+  align-items: center;       /* horizontal center */
+
+  text-align: center;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* HEADLINE */
+.hero h1 {
+  font-size: 48px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* SUBTEXT */
+.subtext {
+  font-size: 18px;
+  color: #ccc;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* HIGHLIGHTS */
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.highlights span {
+  font-size: 15px;
+  color: #aaa;
+}
+
+/* CTA BUTTON */
+.cta {
+  padding: 15px 30px;
+  font-size: 16px;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cta:hover {
+  background: #ddd;
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 30px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .subtext {
+    font-size: 15px;
+  }
+}

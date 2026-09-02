@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#fff;
+  color:#111;
+  padding:30px;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.header h1{
+  margin:0;
+  font-size:28px;
+}
+
+/* TABLE */
+.table-container{
+  background:#fff;
+  border:2px solid #000;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 20px rgba(0,0,0,0.08);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th{
+  background:#000;
+  color:#fff;
+  padding:16px;
+  text-align:left;
+}
+
+td{
+  padding:16px;
+  border-bottom:1px solid #ddd;
+}
+
+tr:hover{
+  background:#f7f7f7;
+}
+
+/* BUTTON */
+.delete-btn{
+  background:#000;
+  color:#fff;
+  border:none;
+  padding:8px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:500;
+  transition:0.3s;
+}
+
+.delete-btn:hover{
+  background:#333;
+  transform:scale(1.03);
+}
+
+/* EMPTY */
+.empty{
+  text-align:center;
+  padding:30px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Admin Dashboard</h1>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>User ID</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="userTable">
+      <tr>
+        <td colspan="4" class="empty">Loading users...</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+async function loadUsers() {
+  const response = await fetch("http://localhost:5000/admin/users");
+  const users = await response.json();
+
+  const table = document.getElementById("userTable");
+  table.innerHTML = "";
+
+  if(users.length === 0){
+    table.innerHTML = `
+      <tr>
+        <td colspan="4" class="empty">No users found</td>
+      </tr>
+    `;
+    return;
+  }
+
+  users.forEach(user => {
+    table.innerHTML += `
+      <tr>
+        <td>${user.username}</td>
+        <td>${user.email}</td>
+        <td>${user._id}</td>
+        <td>
+          <button class="delete-btn" onclick="deleteUser('${user._id}')">
+            Delete
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+async function deleteUser(id){
+  const confirmDelete = confirm("Delete this user?");
+  
+  if(!confirmDelete) return;
+
+  await fetch(`http://localhost:5000/admin/delete-user/${id}`, {
+    method: "DELETE"
+  });
+
+  alert("User deleted successfully");
+  loadUsers();
+}
+
+loadUsers();
+</script>
+
+</body>
+</html>
